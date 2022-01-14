@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded',()=> {
 
   function downloadPicture() {
     let dataURL = canvas.toDataURL();
-    Download.href = dataURL;
+    download.href = dataURL;
   }
 
   function changeDrawMode() {
