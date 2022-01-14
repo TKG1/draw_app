@@ -1,0 +1,32 @@
+<div class="content">
+  <div class="wrapper">
+    <canvas class="drawPicture" id="js-drawPicture" width="600" height="400"></canvas>
+  </div>
+
+  <div class="widthmenu">
+    <p>太さ : </p>
+    <button id="js-lineWidth-1">1px</button>
+    <button id="js-lineWidth-3">3px</button>
+    <button id="js-lineWidth-5">5px</button>
+    <button id="js-lineWidth-10">10px</button>
+  </div>
+
+  <div class="colormenu">
+    <p>色 : </p>
+    <input type="color" id="js-colorBox">
+    </div>
+  </div>
+
+  <div class="drawmenu">
+    <button class="eraser" id="js-eraser">消しゴムモード</button>
+    <button class="clear" id="js-clear">全消し</button>
+  </div>
+  <div class="othermenu">
+    <button id= 'js-pictureUpload'>アップロード</button>
+    <button ><a id="js-downloadCanvas" href="#" download="canvas.jpg">ダウンロード</a></button>
+    <h1>絵が描けたら、アップロードを押してね</h1>
+    <%= link_to '絵馬一覧', posts_path %>
+  </div>
+</div>
+
+

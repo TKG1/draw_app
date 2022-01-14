@@ -1,0 +1,19 @@
+<div class="box">
+  <% @posts.each do |post| %>
+    <div class='image' id="js-post-<%= post.id %>" >
+      <%= image_tag 'ema.png', size: '410x320' %>
+      <div class='inlineimage'>
+        <%= image_tag post.picture.url, size: '300x200' %>
+      </div>
+      <div class="delete">
+        <%= link_to '削除', post_path(post), method: :delete, remote: true, data: { confirm: "人の絵馬は消さないでね" } %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="newPath">
+  <button>
+    <%= link_to '絵馬を描く', new_post_path, data: {"turbolinks" => false} %>
+  </button>
+</div>
