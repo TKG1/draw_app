@@ -95,21 +95,30 @@ document.addEventListener('DOMContentLoaded',()=> {
     ctx.strokeStyle = lineColor;
   });
 
-  pictureUpload.addEventListener('click', async ()=> {
+  pictureUpload.addEventListener('click', ()=> {
     if (drawJudgement === 0) {
       window.alert('何か記入してください')
     } else {
-      let imageBlob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
-      let formData = new FormData();
-      formData.append("post[picture]", imageBlob, "picture.png");
-      const token = document.getElementsByName("csrf-token")[0].content;
-      let response = await fetch('/posts', {
-        method: 'POST',
-        headers: {'X-CSRF-Token': token},
-        body: formData
-      });
+      canvas.toBlob((blob) => {
+        let reader = new FileReader();
+        let formData = new FormData();
+        const token = document.getElementsByName("csrf-token")[0].content;
+        reader.readAsDataURL(blob);
 
-      let location =  await window.location.replace('/posts')
+        reader.onload = async function() {
+          let dataUrlBase64 = reader.result;
+          let base64 = dataUrlBase64.replace(/data:.*\/.*;base64,/, '');
+          formData.append("picture", base64);
+
+          let response = await fetch('/posts', {
+            method: 'POST',
+            headers: {'X-CSRF-Token': token},
+            body: formData
+          });
+  
+          window.location.replace('/posts')
+        }
+      }, 'image/png');
     };
   });
 });

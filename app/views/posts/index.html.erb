@@ -3,7 +3,7 @@
     <div class='image' id="js-post-<%= post.id %>" >
       <%= image_tag 'ema.png', size: '410x320' %>
       <div class='inlineimage'>
-        <%= image_tag post.picture.url, size: '300x200' %>
+        <img src=<%= "data:image/png;base64," + post.picture %> width="300" height="200">
       </div>
       <div class="delete">
         <%= link_to '削除', post_path(post), method: :delete, remote: true, data: { confirm: "人の絵馬は消さないでね" } %>

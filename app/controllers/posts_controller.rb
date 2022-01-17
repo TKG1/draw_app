@@ -8,18 +8,12 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = Post.new(picture: params[:picture])
     @post.save
   end
 
   def destroy
     @post = Post.find(params[:id])
     @post.destroy!
-  end
-
-  private
-
-  def post_params
-    params.require(:post).permit(:picture)
   end
 end
